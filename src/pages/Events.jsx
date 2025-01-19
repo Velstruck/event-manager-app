@@ -14,7 +14,7 @@ export default function Events() {
     name: '',
     description: '',
     location: '',
-    date: new Date()
+    date: new Date(),
   });
 
   useEffect(() => {
@@ -24,10 +24,10 @@ export default function Events() {
   async function fetchEvents() {
     try {
       const querySnapshot = await getDocs(collection(db, 'events'));
-      const eventsData = querySnapshot.docs.map(doc => ({
+      const eventsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-        date: doc.data().date.toDate()
+        date: doc.data().date.toDate(),
       }));
       setEvents(eventsData);
     } catch (error) {
@@ -70,7 +70,7 @@ export default function Events() {
       name: event.name,
       description: event.description,
       location: event.location,
-      date: event.date
+      date: event.date,
     });
     setShowForm(true);
   }
@@ -156,28 +156,33 @@ export default function Events() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (
-          <div key={event.id} className="bg-white shadow rounded-lg p-6">
-            <div className="flex justify-between items-start">
-              <h3 className="text-lg font-medium text-gray-900">{event.name}</h3>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => handleEdit(event)}
-                  className="text-gray-400 hover:text-gray-500"
-                >
-                  <Edit2 className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => handleDelete(event.id)}
-                  className="text-gray-400 hover:text-red-500"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+          <div
+            key={event.id}
+            className="hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+          >
+            <div className="rounded-[10px] bg-white p-6">
+              <div className="flex justify-between items-start">
+                <h3 className="text-lg font-medium text-gray-900">{event.name}</h3>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleEdit(event)}
+                    className="text-gray-400 hover:text-gray-500"
+                  >
+                    <Edit2 className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(event.id)}
+                    className="text-gray-400 hover:text-red-500"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-            </div>
-            <p className="mt-2 text-sm text-gray-500">{event.description}</p>
-            <div className="mt-4 text-sm text-gray-500">
-              <p>Location: {event.location}</p>
-              <p>Date: {event.date.toLocaleDateString()}</p>
+              <p className="mt-2 text-sm text-gray-500">{event.description}</p>
+              <div className="mt-4 text-sm text-gray-500">
+                <p>Location: {event.location}</p>
+                <p>Date: {event.date.toLocaleDateString()}</p>
+              </div>
             </div>
           </div>
         ))}
