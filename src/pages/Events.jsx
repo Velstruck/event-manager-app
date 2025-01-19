@@ -77,7 +77,7 @@ export default function Events() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap gap-4">
         <h2 className="text-2xl font-bold text-gray-900">Events</h2>
         <p className="text-gray-600">Create and manage events</p>
         <button
