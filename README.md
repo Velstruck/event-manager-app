@@ -12,7 +12,7 @@ This is an Event Management Application that allows users to create, manage, and
 
 ## Screenshots
 
-### Home Page
+### Login/SignUp Page
 ![Login/SignUp Page](screenshots/home_page.png)
 
 ### Event Management Page
